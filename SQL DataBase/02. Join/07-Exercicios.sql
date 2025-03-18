@@ -77,8 +77,18 @@ AccountKey da tabela FactStrategyPlan. O seu SELECT final deve conter as colunas
 • DateKey
 • AccountName
 • Amount*/
+Select top(100) * from FactStrategyPlan
+Select top (1) * from DimAccount
 
-
+Select
+	StrategyPlanKey as 'ID do Plano',
+	DateKey as 'Data',
+	DimAccount.AccountName as 'Nome da Conta',
+	Amount
+From
+	FactStrategyPlan
+Inner Join DimAccount 
+	on DimAccount.AccountKey = FactStrategyPlan.AccountKey
 
 /*6. Vamos continuar analisando a tabela FactStrategyPlan. Além da coluna AccountKey que
 identifica o tipo de conta, há também uma outra coluna chamada ScenarioKey. Essa coluna
@@ -88,12 +98,47 @@ da tabela FactStrategyPlan. O seu SELECT final deve conter as colunas:
 • StrategyPlanKey
 • DateKey
 • ScenarioName
-• Amount
-7. Algumas subcategorias não possuem nenhum exemplar de produto. Identifique que
-subcategorias são essas.
-8. A tabela abaixo mostra a combinação entre Marca e Canal de Venda, para as marcas Contoso,
-Fabrikam e Litware. Crie um código SQL para chegar no mesmo resultado.
-9. Neste exercício, você deverá relacionar as tabelas FactOnlineSales com DimPromotion.
+• Amount*/
+Select top(100) * from FactStrategyPlan
+Select top (1) * from DimScenario
+
+Select
+	StrategyPlanKey as 'ID do Plano',
+	DateKey as 'Data',
+	DimScenario.ScenarioName as 'Nome do Scenario',
+	Amount
+From
+	FactStrategyPlan
+Inner Join DimScenario 
+	on DimScenario.ScenarioKey = FactStrategyPlan.ScenarioKey
+
+/*7. Algumas subcategorias não possuem nenhum exemplar de produto. Identifique que
+subcategorias são essas.*/
+Select * From DimProduct
+Select * From DimProductSubcategory
+
+Select
+	ProductName as 'Nome do Produto',
+	DimProductSubcategory.ProductSubcategoryName as 'Subcategoria'
+From
+	DimProduct
+Right join DimProductSubcategory
+	on DimProductSubcategory.ProductSubcategoryKey = DimProduct.ProductSubcategoryKey
+Where ProductName is null
+
+
+
+/*8. A tabela abaixo mostra a combinação entre Marca e Canal de Venda, para as marcas Contoso,
+Fabrikam e Litware. Crie um código SQL para chegar no mesmo resultado.*/
+
+Select
+	Distinct BrandName as 'Marca',
+	ChannelName as 'Canal'
+From
+	DimProduct Cross Join DimChannel
+Where BrandName in('Contoso', 'Fabrikan', 'LitWare')
+
+/*9. Neste exercício, você deverá relacionar as tabelas FactOnlineSales com DimPromotion.
 Identifique a coluna que as duas tabelas têm em comum e utilize-a para criar esse
 relacionamento.
 Retorne uma tabela contendo as seguintes colunas:
@@ -103,7 +148,43 @@ Retorne uma tabela contendo as seguintes colunas:
 • SalesAmount
 A sua consulta deve considerar apenas as linhas de vendas referentes a produtos com
 desconto (PromotionName <> ‘No Discount’). Além disso, você deverá ordenar essa tabela de
-acordo com a coluna DateKey, em ordem crescente.
-10. A tabela abaixo é resultado de um Join entre a tabela FactSales e as tabelas: DimChannel,
+acordo com a coluna DateKey, em ordem crescente.*/
+Select top (1) * from FactOnlineSales
+Select top (1) * from DimPromotion
+
+Select
+	OnlineSalesKey as 'ID da Venda Online',
+	DateKey as 'ID da Data',
+	DimPromotion.PromotionName as 'Promoção',
+	SalesAmount as 'Qtde. Vendas'
+From 
+	FactOnlineSales
+Left Join DimPromotion
+	on DimPromotion.PromotionKey = FactOnlineSales.PromotionKey
+Where PromotionName = 'No Discount'
+Order By DateKey
+
+
+/*10. A tabela abaixo é resultado de um Join entre a tabela FactSales e as tabelas: DimChannel,
 DimStore e DimProduct.
 Recrie esta consulta e classifique em ordem decrescente de acordo com SalesAmount.*/
+Select top (1) * from DimChannel
+Select top (1) * from DimStore
+Select top (1) * from Dimproduct
+Select top (1) * from FactSales
+
+Select top (100)
+	SalesKey,
+	DimChannel.ChannelName,
+	DimStore.StoreName,
+	DimProduct.ProductName,
+	SalesAmount
+From
+	FactSales 
+Inner Join DimChannel
+	on DimChannel.ChannelKey = FactSales.channelKey
+Inner Join DimStore
+	on DimStore.StoreKey = FactSales.StoreKey
+Inner Join DimProduct
+	on DimProduct.ProductKey = FactSales.ProductKey
+Order By SalesAmount Desc

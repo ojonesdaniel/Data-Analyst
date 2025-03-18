@@ -47,6 +47,33 @@ CROSS JOIN TabelaB B;
 
 ---
 
+## 🔗 **UNION e UNION ALL**
+
+O **UNION** é utilizado para combinar os resultados de duas ou mais consultas SQL. Ele **elimina valores duplicados** automaticamente, enquanto o **UNION ALL** mantém todos os registros, inclusive os duplicados.
+
+✅ **Regras para usar UNION:**
+- O número e a ordem das colunas devem ser os mesmos em ambas as consultas.
+- Os tipos de dados das colunas correspondentes devem ser compatíveis.
+
+📌 **Exemplo de UNION:**
+```sql
+SELECT Nome, Cidade FROM ClientesBrasil
+UNION
+SELECT Nome, Cidade FROM ClientesPortugal;
+```
+
+📌 **Exemplo de UNION ALL:**
+```sql
+SELECT Nome, Cidade FROM ClientesBrasil
+UNION ALL
+SELECT Nome, Cidade FROM ClientesPortugal;
+```
+
+- **UNION** retorna apenas valores distintos.
+- **UNION ALL** retorna todos os valores, incluindo duplicatas.
+
+---
+
 ## 🔑 **Chave Primária e Chave Estrangeira**
 
 ### **Chave Primária (Primary Key - PK)**
@@ -89,5 +116,4 @@ Neste exemplo:
 
 ---
 
-Esses conceitos são fundamentais para trabalhar com bancos de dados relacionais e realizar consultas eficientes com SQL. 🚀
-
+Esses conceit
