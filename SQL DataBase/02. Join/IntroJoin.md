@@ -116,4 +116,35 @@ Neste exemplo:
 
 ---
 
-Esses conceit
+## 🔗 **JOIN + GROUP BY**
+
+O **JOIN** pode ser combinado com o **GROUP BY** para analisar dados agrupados entre tabelas relacionadas.
+
+### 📌 **Quando Usar?**
+Quando queremos agrupar e agregar informações que estão distribuídas entre múltiplas tabelas.
+
+📌 **Exemplo – Contando Pedidos por Cliente:**
+```sql
+SELECT Clientes.Nome, COUNT(Pedidos.PedidoID) AS TotalPedidos
+FROM Clientes
+INNER JOIN Pedidos ON Clientes.ClienteID = Pedidos.ClienteID
+GROUP BY Clientes.Nome;
+```
+✅ O `JOIN` combina as tabelas `Clientes` e `Pedidos`.
+✅ O `GROUP BY` agrupa os pedidos por cliente.
+✅ O `COUNT(Pedidos.PedidoID)` conta quantos pedidos cada cliente fez.
+
+📌 **Exemplo – Somando o Valor Total de Vendas por Categoria:**
+```sql
+SELECT Categorias.Nome, SUM(Produtos.Preco * PedidosItens.Quantidade) AS TotalVendas
+FROM Categorias
+INNER JOIN Produtos ON Categorias.CategoriaID = Produtos.CategoriaID
+INNER JOIN PedidosItens ON Produtos.ProdutoID = PedidosItens.ProdutoID
+GROUP BY Categorias.Nome;
+```
+✅ O `SUM()` calcula o total de vendas por categoria.
+✅ O `JOIN` permite acessar dados de diferentes tabelas.
+✅ O `GROUP BY` agrupa os resultados por categoria.
+
+O uso de **JOIN + GROUP BY** é essencial para relatórios e análises em SQL! 🚀
+
