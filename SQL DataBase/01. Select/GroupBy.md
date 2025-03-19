@@ -88,5 +88,3 @@ HAVING SUM(Preco) > 5000;
 ```
 
 ---
-
-Esses conceitos são fundamentais para manipular e analisar grandes volumes de dados no SQL. Se precisar de mais detalhes ou exemplos, só avisar! 🚀

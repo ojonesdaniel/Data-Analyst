@@ -105,7 +105,7 @@ From
 	FactOnlineSales
 Inner Join DimChannel
 	on FactOnlineSales.Costumerkey = DimCostumer.CostumerKey
-Where CostumerType = 'Person'
+Where CustomerType = 'Person'
 Group By DimCustomer.CustomerKey, FirstName, LastName
 Order By Sum(SalesQuantity) Desc
 
@@ -125,19 +125,30 @@ Group By Gender
 
 
 /*6. Faça uma tabela resumo mostrando a taxa de câmbio média de acordo com cada
-CurrencyDescription. A tabela final deve conter apenas taxas entre 10 e 100.
-FACTSTRATEGYPLAN*/
+CurrencyDescription. A tabela final deve conter apenas taxas entre 10 e 100.*/
 
-
+Select 
+	CurrencyDescription,
+	Avg(AverageRate) as 'Taxa Media'
+From 
+	FactExchangeRate
+Inner Join DimCurrency
+	on FactExchangeRate.CurrencyKey = DimCurrency.CurrencyKey
+Group By CurrencyDescription
+Having Avg(AverageRate) Between 10 and 100
 
 
 /*7. Calcule a SOMA TOTAL de AMOUNT referente à tabela FactStrategyPlan destinado aos
 cenários: Actual e Budget.
-Dica: A tabela DimScenario será importante para esse exercício.
-8. Faça uma tabela resumo mostrando o resultado do planejamento estratégico por ano.
-DIMPRODUCT/DIMPRODUCTSUBCATEGORY
-9. Faça um agrupamento de quantidade de produtos por ProductSubcategoryName. Leve em
+Dica: A tabela DimScenario será importante para esse exercício.*/
+
+
+/*8. Faça uma tabela resumo mostrando o resultado do planejamento estratégico por ano.
+DIMPRODUCT/DIMPRODUCTSUBCATEGORY*/
+
+/*9. Faça um agrupamento de quantidade de produtos por ProductSubcategoryName. Leve em
 consideração em sua análise apenas a marca Contoso e a cor Silver.*/
+
 /*10. Faça um agrupamento duplo de quantidade de produtos por BrandName e
 ProductSubcategoryName. A tabela final deverá ser ordenada de acordo com a coluna
 BrandName.*/
