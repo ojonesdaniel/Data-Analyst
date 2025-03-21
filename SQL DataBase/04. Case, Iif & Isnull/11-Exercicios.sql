@@ -6,8 +6,18 @@ Regular -> 7%
 Deluxe -> 9%
 a) Faça uma consulta à tabela DimProduct que retorne as seguintes colunas: ProductKey,
 ProductName, e outras duas colunas que deverão retornar o % de Desconto e UnitPrice com
-desconto.
-b) Faça uma adaptação no código para que os % de desconto de 5%, 7% e 9% sejam facilmente
+desconto.*/
+
+SELECT 
+    ProductKey,
+    ProductName,
+    Case
+        When 
+    End
+From
+    DimProduct
+
+/*b) Faça uma adaptação no código para que os % de desconto de 5%, 7% e 9% sejam facilmente
 modificados (dica: utilize variáveis).
 /*2. Você ficou responsável pelo controle de produtos da empresa e deverá fazer uma análise da
 quantidade de produtos por Marca.
