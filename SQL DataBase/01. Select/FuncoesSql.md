@@ -2,14 +2,24 @@
 
 ### **SUM (Soma de valores)**
 ```sql
-SELECT SUM(Preco) AS TotalVendas FROM Pedidos;
+SELECT 
+    SUM(Preco) AS TotalVendas 
+FROM 
+    Pedidos
 ```
 - Retorna a soma dos valores de uma coluna numérica.
 
 ### **COUNT (Conta o número de registros)**
 ```sql
-SELECT COUNT(*) AS TotalClientes FROM Clientes;
-SELECT COUNT(DISTINCT Categoria) AS TotalCategorias FROM Produtos;
+SELECT 
+    COUNT(*) AS TotalClientes 
+FROM 
+    Clientes
+
+SELECT 
+    COUNT(DISTINCT Categoria) AS TotalCategorias 
+FROM 
+    Produtos
 ```
 - `COUNT(*)` conta todos os registros.
 - `COUNT(DISTINCT Coluna)` conta apenas valores únicos da coluna.
