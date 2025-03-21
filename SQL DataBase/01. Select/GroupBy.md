@@ -4,15 +4,21 @@ O comando **GROUP BY** é utilizado para agrupar linhas que possuem valores igua
 
 ## **Sintaxe Básica:**
 ```sql
-SELECT Coluna, SUM(OutraColuna)
-FROM SuaTabela
+SELECT 
+    Coluna, 
+    SUM(OutraColuna)
+FROM 
+    SuaTabela
 GROUP BY Coluna;
 ```
 
 ## **Exemplo Prático:**
 ```sql
-SELECT Categoria, COUNT(*) AS TotalProdutos
-FROM Produtos
+SELECT 
+    Categoria, 
+    COUNT(*) AS TotalProdutos
+FROM 
+    Produtos
 GROUP BY Categoria;
 ```
 - Agrupa os produtos por categoria e conta quantos produtos há em cada categoria.
@@ -25,8 +31,11 @@ O **ORDER BY** pode ser usado junto com **GROUP BY** para ordenar os resultados.
 
 ## **Exemplo:**
 ```sql
-SELECT Categoria, AVG(Preco) AS PrecoMedio
-FROM Produtos
+SELECT 
+    Categoria, 
+    AVG(Preco) AS PrecoMedio
+FROM 
+    Produtos
 GROUP BY Categoria
 ORDER BY PrecoMedio DESC;
 ```
@@ -40,8 +49,11 @@ O **WHERE** é usado antes do **GROUP BY** para filtrar os dados antes da agrega
 
 ## **Exemplo:**
 ```sql
-SELECT Categoria, SUM(Preco) AS TotalVendas
-FROM Produtos
+SELECT 
+    Categoria, 
+    SUM(Preco) AS TotalVendas
+FROM 
+    Produtos
 WHERE Estoque > 10
 GROUP BY Categoria;
 ```
@@ -55,8 +67,11 @@ O **HAVING** é semelhante ao **WHERE**, mas é usado após o **GROUP BY** para 
 
 ## **Exemplo:**
 ```sql
-SELECT Categoria, COUNT(*) AS TotalProdutos
-FROM Produtos
+SELECT 
+    Categoria, 
+    COUNT(*) AS TotalProdutos
+FROM 
+    Produtos
 GROUP BY Categoria
 HAVING COUNT(*) > 5;
 ```
@@ -75,14 +90,20 @@ HAVING COUNT(*) > 5;
 ## **Exemplo Comparativo:**
 ```sql
 -- WHERE (filtra antes do agrupamento)
-SELECT Categoria, SUM(Preco) AS TotalVendas
-FROM Produtos
+SELECT 
+    Categoria, 
+    SUM(Preco) AS TotalVendas
+FROM 
+    Produtos
 WHERE Estoque > 10
 GROUP BY Categoria;
 
 -- HAVING (filtra depois do agrupamento)
-SELECT Categoria, SUM(Preco) AS TotalVendas
-FROM Produtos
+SELECT 
+    Categoria, 
+    SUM(Preco) AS TotalVendas
+FROM 
+    Produtos
 GROUP BY Categoria
 HAVING SUM(Preco) > 5000;
 ```

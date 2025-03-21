@@ -10,7 +10,8 @@ Retorna apenas os registros que possuem correspondência em ambas as tabelas.
 ```sql
 SELECT A.Coluna, B.Coluna
 FROM TabelaA A
-INNER JOIN TabelaB B ON A.ID = B.ID;
+INNER JOIN TabelaB B 
+    ON A.ID = B.ID;
 ```
 
 ### 🔹 **LEFT JOIN (ou LEFT OUTER JOIN)**
@@ -18,7 +19,8 @@ Retorna todos os registros da **tabela à esquerda** e os correspondentes da tab
 ```sql
 SELECT A.Coluna, B.Coluna
 FROM TabelaA A
-LEFT JOIN TabelaB B ON A.ID = B.ID;
+LEFT JOIN TabelaB B 
+    ON A.ID = B.ID;
 ```
 
 ### 🔹 **RIGHT JOIN (ou RIGHT OUTER JOIN)**
@@ -26,7 +28,8 @@ Retorna todos os registros da **tabela à direita** e os correspondentes da tabe
 ```sql
 SELECT A.Coluna, B.Coluna
 FROM TabelaA A
-RIGHT JOIN TabelaB B ON A.ID = B.ID;
+RIGHT JOIN TabelaB B 
+    ON A.ID = B.ID;
 ```
 
 ### 🔹 **FULL JOIN (ou FULL OUTER JOIN)**
@@ -34,7 +37,8 @@ Retorna **todos os registros** de ambas as tabelas. Se não houver correspondên
 ```sql
 SELECT A.Coluna, B.Coluna
 FROM TabelaA A
-FULL JOIN TabelaB B ON A.ID = B.ID;
+FULL JOIN TabelaB B 
+    ON A.ID = B.ID;
 ```
 
 ### 🔹 **CROSS JOIN**
@@ -127,7 +131,8 @@ Quando queremos agrupar e agregar informações que estão distribuídas entre m
 ```sql
 SELECT Clientes.Nome, COUNT(Pedidos.PedidoID) AS TotalPedidos
 FROM Clientes
-INNER JOIN Pedidos ON Clientes.ClienteID = Pedidos.ClienteID
+INNER JOIN Pedidos 
+    ON Clientes.ClienteID = Pedidos.ClienteID
 GROUP BY Clientes.Nome;
 ```
 ✅ O `JOIN` combina as tabelas `Clientes` e `Pedidos`.
@@ -138,8 +143,10 @@ GROUP BY Clientes.Nome;
 ```sql
 SELECT Categorias.Nome, SUM(Produtos.Preco * PedidosItens.Quantidade) AS TotalVendas
 FROM Categorias
-INNER JOIN Produtos ON Categorias.CategoriaID = Produtos.CategoriaID
-INNER JOIN PedidosItens ON Produtos.ProdutoID = PedidosItens.ProdutoID
+INNER JOIN Produtos 
+    ON Categorias.CategoriaID = Produtos.CategoriaID
+        INNER JOIN PedidosItens 
+            ON Produtos.ProdutoID = PedidosItens.ProdutoID
 GROUP BY Categorias.Nome;
 ```
 ✅ O `SUM()` calcula o total de vendas por categoria.

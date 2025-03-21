@@ -2,6 +2,7 @@
 
 ## 📖 **Descrição**
 Este repositório centraliza os conteúdos das formações da **Hashtag Treinamentos** sobre **Power BI** e **SQL Database**. Aqui você encontrará materiais organizados para facilitar o aprendizado e referência rápida.
+Todos os Exercicios do Treinamento formam feitos com o ContosoDB [url:https://www.microsoft.com/en-us/download/details.aspx?id=18279]
 
 ## 📂 **Estrutura do Repositório**
 ```

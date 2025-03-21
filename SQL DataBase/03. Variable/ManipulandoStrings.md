@@ -1,11 +1,11 @@
-# 📌 **Funções de Formatação de Strings no SQL Server**
+# 📌 **Funções de Formatação de Strings e Datas no SQL Server**
 
 ## 🔹 **O que são Funções de Formatação de Strings?**
 As funções de formatação de strings no SQL Server permitem manipular e modificar textos dentro das consultas, possibilitando ajustes como concatenação, remoção de espaços, substituição de caracteres e alteração de maiúsculas e minúsculas.
 
 ---
 
-## 🔹 **Principais Funções**
+## 🔹 **Principais Funções de Strings**
 
 ### **1️⃣ UPPER e LOWER**
 Usadas para converter o texto para maiúsculas ou minúsculas.
@@ -93,8 +93,80 @@ SELECT TRANSLATE('123-456-789', '123', 'ABC') AS TextoTraduzido;
 -- Retorno: 'ABC-456-789'
 ```
 
----Colocar Funções de Data e Charindex
+### **🔹 CHARINDEX**
+Retorna a posição de uma substring dentro de outra string. Se não for encontrada, retorna 0.
+```sql
+SELECT CHARINDEX('Dados', 'Banco de Dados') AS Posicao;
+-- Retorno: 10
+```
+
+---
+
+## 🔹 **Funções de Manipulação de Datas**
+
+### **1️⃣ GETDATE**
+Retorna a data e hora atuais do servidor.
+```sql
+SELECT GETDATE() AS DataAtual;
+-- Retorno: '2025-03-19 14:30:00.000'
+```
+
+### **2️⃣ CURRENT_TIMESTAMP**
+Equivalente ao `GETDATE()`, retorna a data e hora do sistema.
+```sql
+SELECT CURRENT_TIMESTAMP AS DataAtual;
+-- Retorno: '2025-03-19 14:30:00.000'
+```
+
+### **3️⃣ DATEADD**
+Adiciona ou subtrai um intervalo de tempo a uma data.
+```sql
+SELECT DATEADD(DAY, 10, GETDATE()) AS DataFutura;
+-- Retorno: '2025-03-29 14:30:00.000'
+```
+
+### **4️⃣ DATEDIFF**
+Retorna a diferença entre duas datas em um determinado intervalo.
+```sql
+SELECT DATEDIFF(DAY, '2025-03-01', '2025-03-19') AS DiferencaDias;
+-- Retorno: 18
+```
+
+### **5️⃣ DATEPART**
+Extrai uma parte específica de uma data.
+```sql
+SELECT DATEPART(YEAR, GETDATE()) AS AnoAtual;
+-- Retorno: 2025
+```
+
+### **6️⃣ DATENAME**
+Retorna o nome da parte especificada de uma data.
+```sql
+SELECT DATENAME(MONTH, GETDATE()) AS NomeMes;
+-- Retorno: 'Março'
+```
+
+### **7️⃣ EOMONTH**
+Retorna o último dia do mês de uma data especificada.
+```sql
+SELECT EOMONTH(GETDATE()) AS UltimoDiaMes;
+-- Retorno: '2025-03-31'
+```
+
+### **8️⃣ SWITCHOFFSET**
+Altera o fuso horário de um valor de data/hora.
+```sql
+SELECT SWITCHOFFSET(SYSDATETIMEOFFSET(), '-03:00') AS HorarioBrasilia;
+```
+
+### **9️⃣ TODATETIMEOFFSET**
+Define explicitamente um deslocamento de fuso horário.
+```sql
+SELECT TODATETIMEOFFSET(GETDATE(), '-03:00') AS DataComFuso;
+```
+
+---
 
 ## 🔹 **Conclusão**
-As funções de formatação de strings no SQL Server são essenciais para manipulação de textos, seja para padronização, limpeza de dados ou formatação específica. 🚀
+As funções de formatação de strings e datas no SQL Server são essenciais para manipulação de textos e controle de datas em consultas. 🚀
 
