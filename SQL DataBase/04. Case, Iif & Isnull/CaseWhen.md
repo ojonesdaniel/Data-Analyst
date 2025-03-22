@@ -13,13 +13,13 @@ SELECT Nome, Idade,
 FROM Pessoas;
 ```
 **Saída esperada:**
-```
+
 | Nome  | Idade | FaixaEtaria     |
 |-------|-------|---------------|
 | João  | 17    | Menor de idade |
 | Maria | 25    | Adulto         |
 | José  | 65    | Idoso          |
-```
+
 
 ### **CASE com operadores AND e OR**
 ```sql
@@ -33,13 +33,13 @@ SELECT Nome, Cargo, Salario,
 FROM Funcionarios;
 ```
 **Saída esperada:**
-```
+
 | Nome  | Cargo         | Salario | Categoria   |
 |-------|--------------|---------|------------|
 | Ana   | Desenvolvedor| 6000    | Sênior     |
 | Pedro | Desenvolvedor| 4500    | Júnior     |
 | Carla | Gerente      | 8000    | Liderança  |
-```
+
 
 ---
 
@@ -52,12 +52,12 @@ SELECT Nome, Salario,
 FROM Funcionarios;
 ```
 **Saída esperada:**
-```
+
 | Nome  | Salario | ClassificacaoSalario |
 |-------|---------|----------------------|
 | João  | 6000    | Alto                 |
 | Maria | 4000    | Baixo                |
-```
+
 
 ---
 
@@ -69,12 +69,12 @@ SELECT Nome, ISNULL(Telefone, 'Sem telefone cadastrado') AS Telefone
 FROM Clientes;
 ```
 **Saída esperada:**
-```
+
 | Nome  | Telefone               |
 |-------|------------------------|
 | Lucas | (31) 99999-9999        |
 | Ana   | Sem telefone cadastrado|
-```
+
 
 ---
 
