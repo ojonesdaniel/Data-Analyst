@@ -1,113 +1,76 @@
-# 📌 **Variáveis no SQL Server**
+# 📌 Variáveis no SQL Server
 
-## 🔹 **O que são Variáveis no SQL?**
-As variáveis no SQL Server são utilizadas para armazenar valores temporários que podem ser manipulados ao longo da execução de um script SQL.
-
-✅ São úteis para armazenar resultados intermediários, cálculos dinâmicos e parâmetros de consulta.
+No SQL Server, as variáveis são usadas para armazenar valores temporários durante a execução de uma consulta.
 
 ---
 
-## 🔹 **Declarando Variáveis**
-Para criar uma variável, usamos `DECLARE` seguido do nome da variável e do seu tipo de dado.
-
-📌 **Exemplo:**
+## 🔹 **Declaração e Atribuição de Variáveis**
 ```sql
-DECLARE @NomeCliente VARCHAR(100);
+DECLARE @Nome VARCHAR(100);
+SET @Nome = 'João';
+```
+Ou usando `SELECT` para atribuir um valor:
+```sql
 DECLARE @Idade INT;
-```
-
-🔹 O nome da variável **sempre começa com `@`**.
-🔹 O tipo de dado deve ser compatível com os valores que a variável armazenará.
-
----
-
-## 🔹 **Atribuindo Valores**
-Podemos atribuir valores a uma variável usando `SET` ou `SELECT`.
-
-📌 **Exemplo com `SET`:**
-```sql
-SET @NomeCliente = 'João';
-SET @Idade = 30;
-```
-
-📌 **Exemplo com `SELECT`:**
-```sql
-SELECT @Idade = Idade FROM Clientes WHERE ClienteID = 1;
-```
-
-✅ `SET` atribui um único valor à variável.
-✅ `SELECT` pode ser usado para definir valores com base em uma consulta.
-
----
-
-## 🔹 **Usando Variáveis em Consultas**
-Podemos usar variáveis em `SELECT`, `INSERT`, `UPDATE`, `DELETE` e outros comandos SQL.
-
-📌 **Exemplo – Filtrando resultados com uma variável:**
-```sql
-DECLARE @CategoriaID INT;
-SET @CategoriaID = 2;
-
-SELECT * FROM Produtos WHERE CategoriaID = @CategoriaID;
-```
-
-✅ Isso permite **flexibilidade**, pois podemos alterar o valor da variável sem modificar a estrutura da consulta.
-
----
-
-## 🔹 **Variáveis de Tabela**
-Além de variáveis escalares, podemos usar variáveis de **tabela** para armazenar conjuntos de dados temporários.
-
-📌 **Exemplo:**
-```sql
-DECLARE @ProdutosTemp TABLE (
-    ProdutoID INT,
-    Nome VARCHAR(100),
-    Preco DECIMAL(10,2)
-);
-
-INSERT INTO @ProdutosTemp VALUES (1, 'Notebook', 2500.00);
-SELECT * FROM @ProdutosTemp;
-```
-
-✅ As variáveis de tabela são úteis para armazenar dados temporários sem a necessidade de criar tabelas físicas no banco.
-
----
-
-## 🔹 **Conversão e Formatação de Dados**
-### **CAST e CONVERT**
-Usados para converter tipos de dados.
-```sql
-DECLARE @Valor INT = 100;
-SELECT CAST(@Valor AS VARCHAR(10)) AS ValorTexto;
-SELECT CONVERT(VARCHAR(10), @Valor) AS ValorTexto;
-```
-
-### **FORMAT**
-Usado para formatar valores de data e números.
-```sql
-SELECT FORMAT(GETDATE(), 'yyyy-MM-dd') AS DataFormatada;
-SELECT FORMAT(1234.56, 'C', 'pt-BR') AS ValorFormatado;
-```
-
-### **ROUND, FLOOR e CEILING**
-Usados para manipulação de números decimais.
-```sql
-SELECT ROUND(123.456, 2) AS Arredondado;
-SELECT FLOOR(123.456) AS ArredondadoParaBaixo;
-SELECT CEILING(123.456) AS ArredondadoParaCima;
-```
-
-### **SQL_VARIANT_PROPERTY**
-Usado para obter informações sobre valores armazenados em variáveis do tipo `sql_variant`.
-```sql
-DECLARE @Variante sql_variant;
-SET @Variante = 123.45;
-SELECT SQL_VARIANT_PROPERTY(@Variante, 'BaseType') AS TipoBase;
+SELECT @Idade = 25;
 ```
 
 ---
 
-## 🔹 **Conclusão**
-As variáveis no SQL Server são essenciais para criar scripts dinâmicos, melhorar a legibilidade do código e evitar repetição desnecessária de valores fixos. 🚀
+## 🔹 **Tipos de Variáveis**
 
+| Tipo de Variável  | Descrição |
+|-------------------|-----------|
+| `INT`            | Números inteiros |
+| `VARCHAR(n)`     | Texto com tamanho variável |
+| `CHAR(n)`        | Texto com tamanho fixo |
+| `DECIMAL(p,s)`   | Números decimais |
+| `DATETIME`       | Data e hora |
+| `BIT`            | Valores booleanos (0 ou 1) |
+
+---
+
+## 🔹 **CAST - Conversão de Tipos**
+Converte um valor para um tipo específico.
+```sql
+SELECT CAST(123.45 AS INT) AS NumeroInteiro;
+-- Saída: 123
+```
+
+---
+
+## 🔹 **FORMAT - Formatação de Valores**
+Usado para formatar números e datas.
+```sql
+SELECT FORMAT(GETDATE(), 'dd/MM/yyyy') AS DataFormatada;
+-- Saída: '10/03/2025'
+```
+
+---
+
+## 🔹 **ROUND - Arredondamento de Valores**
+Arredonda um número para um número específico de casas decimais.
+```sql
+SELECT ROUND(123.456, 2) AS NumeroArredondado;
+-- Saída: 123.46
+```
+
+---
+
+## 🔹 **FLOOR e CEILING - Arredondamento para baixo e para cima**
+```sql
+SELECT FLOOR(123.9) AS ArredondadoParaBaixo, CEILING(123.1) AS ArredondadoParaCima;
+-- Saída: 123 | 124
+```
+
+---
+
+## 🔹 **SQL_VARIANT_PROPERTY - Propriedades de Variáveis**
+Retorna informações sobre um valor do tipo `sql_variant`.
+```sql
+DECLARE @Valor sql_variant = 123.45;
+SELECT SQL_VARIANT_PROPERTY(@Valor, 'BaseType') AS Tipo;
+-- Saída: 'numeric'
+```
+
+Essas são algumas das principais funções relacionadas a variáveis no SQL Server. 🚀
