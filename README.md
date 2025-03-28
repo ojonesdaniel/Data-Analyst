@@ -19,11 +19,11 @@ Todos os exercícios do treinamento foram feitos com o **ContosoDB**. Você pode
 Reunir e estruturar os materiais das formações, proporcionando um guia claro para aprendizado e revisão.
 
 ## 📌 **Conteúdos**
-### **🔹 Power BI**
+### **🔹Power BI**
 - Introdução ao Power BI
 - Modelagem de Dados
 
-### **🔹 SQL Database**
+### **🔹SQL Server**
 - Fundamentos do SQL SERVER
 - Manipulação e Modelagem de Dados
 - Consultas SQL
