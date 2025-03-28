@@ -5,6 +5,8 @@ O **JOIN** é um comando SQL utilizado para combinar registros de duas ou mais t
 
 ## 🔍 **Tipos de JOINS**
 
+![alt text](<SQL JOINS.png>)
+
 ### 🔹 **INNER JOIN**
 Retorna apenas os registros que possuem correspondência em ambas as tabelas.
 ```sql
