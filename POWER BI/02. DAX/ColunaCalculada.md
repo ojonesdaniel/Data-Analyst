@@ -69,16 +69,16 @@ SWITCH(Expressao, Valor1, Retorno1, Valor2, Retorno2, ValorPadrao) -- Alternativ
 ### ✅ **Operadores Lógicos e Comparação**
 Usados para realizar operações lógicas e comparações:
 ```DAX
-&& -- AND lógico (E)
-|| -- OR lógico (OU)
-! -- NOT lógico (NÃO)
-& -- Concatenação de strings
+&&  -- AND lógico (E)
+||  -- OR lógico (OU)
+!   -- NOT lógico (NÃO)
+&   -- Concatenação de strings
 >	-- Maior que
 <	-- Menor que
 >=	-- Maior ou igual
 <=	-- Menor ou igual
-= -- Igual a
-<> -- Diferente de
+=   -- Igual a
+<>  -- Diferente de
 ```
 
 ---
